@@ -34,7 +34,6 @@
                                             <?php if(isset($_SESSION['customerDetails']['must_kod'])){ ?>
                                             <div class="valid-feedback">
                                                <?php echo($_SESSION['customerDetails']['kimlik_bilgisi']['adi']) ?> <?php echo($_SESSION['customerDetails']['kimlik_bilgisi']['soyadi']) ?>
-
                                             </div>
                                             <?php } ?>
                                         </div>
@@ -359,7 +358,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="sigorta_Ettiren" >Kalkış Yeri : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_4" value="İZMİR">
+                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_4" value="">
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label for="sigortali">Varış Yeri : </label>
@@ -392,7 +391,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="teklif_tarihi">Kalkış Yeri (İNG.) : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_8" value="İZMİR">
+                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_8" value="">
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label for="tanzim_tarihi">Varış Yeri (İNG.) : </label>
@@ -406,7 +405,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <button style="float: right !important" id="matbu_btn" type="button" class="btn btn-secondary btn-sm">Kontrol et</button>
+                                <button style="float: right !important; margin-top: 14% !important" id="matbu_btn" type="button" class="btn btn-secondary btn-sm">Kontrol et</button>
                             </fieldset>
                         </div>
                         <div id="teminat_div" style="float: left; width: 32.5% !important">
@@ -462,10 +461,48 @@
 </script>
 <script>
     $('select').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        var optSelect = $('#edt_ist_TDG option:selected').val();
         alert( this.value );
     });
 </script>
+<script>
+    var bauVal = $("#edt_ist_BAU").val();
+    $("#edt_matbu_4").val(bauVal);
+    $("#edt_matbu_8").val(bauVal);
+
+    $('#edt_ist_BAU').on('change', function() {
+        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        var getVal = this.value ;
+        $("#edt_matbu_4").val(getVal);
+        $("#edt_matbu_8").val(getVal);
+    });
+</script>
+<script>
+    var btuVal = $("#edt_ist_BTU").val();
+    $("#edt_matbu_7").val(btuVal);
+    $("#edt_matbu_9").val(btuVal);
+
+    $('#edt_ist_BTU').on('change', function() {
+        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        var getVal = this.value ;
+        $("#edt_matbu_7").val(getVal);
+        $("#edt_matbu_9").val(getVal);
+    });
+</script>
+<script>
+    var emkVal = $("#edt_ist_EMK").val();
+    $("#edt_matbu_11").val(emkVal);
+    $("#edt_matbu_12").val(emkVal);
+
+    $('#edt_ist_EMK').on('change', function() {
+        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        var getVal = this.value ;
+        $("#edt_matbu_11").val(getVal);
+        $("#edt_matbu_12").val(getVal);
+
+    });
+</script>
+
 <script>
     $( function() {
       $( "#datepicker" ).datepicker({
