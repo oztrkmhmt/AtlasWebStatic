@@ -63,6 +63,7 @@ class Users extends Controller {
         }
     }
 
+
     //Session logout
     public function logout() {
         unset($_SESSION['AWSession']);
@@ -82,6 +83,7 @@ class Users extends Controller {
         $this->userModel->GetLoginDetails($data);
         $this->userModel->GetPolicyScreen($data);
         $this->view('users/main', $data);
+            
         }
     }
   

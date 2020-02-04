@@ -16,7 +16,7 @@ class Modal {
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control form-control-sm" name="kimlikno" minlength="11" maxlength="11" id="<?php echo($inputID) ?>" placeholder="T.C. Kimlik No" value="" required>
+                                <input type="number" class="form-control form-control-sm" onkeydown="return event.keyCode !== 69" name="kimlikno" minlength="11" maxlength="11" id="<?php echo($inputID) ?>" placeholder="T.C. Kimlik No" value="" required>
                             </div>
                         </div>
                     </div>

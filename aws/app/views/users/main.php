@@ -13,14 +13,14 @@
                 </div>
                 <!-- Show Product Detail-->
                 <div class="card-body">
-                    <form id="form_abonman" action="../users/login" method="post">
+                    <form id="form_abonman" onsubmit='return onSubmit(this)' action="" method="post">
                         <div style="float: left; width: 32.5% !important">
                             <fieldset  class="product_border fieldsetClass">
                                 <legend class="product_border">Genel Bilgiler ( Abonman )</legend>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="sigorta_Ettiren" >Sigorta Ettiren : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_abon_1" value='<?php echo($_SESSION['policyScreen']['sie_must']['must_unvani']) ?>' readonly>
+                                        <input type="text" class="form-control form-control-sm" name="edt_abon_1" id="edt_abon_1" value='<?php echo($_SESSION['policyScreen']['sie_must']['must_unvani']) ?>' readonly>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label for="sigortali">Sigortalı : </label>
@@ -42,17 +42,17 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="police_cinsi">Poliçe Cinsi : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_abon_3" value='<?php echo($_SESSION['policyScreen']['police_cinsi']) ?>' readonly>
+                                        <input type="text" class="form-control form-control-sm" name="edt_abon_3" id="edt_abon_3" value='<?php echo($_SESSION['policyScreen']['police_cinsi']) ?>' readonly>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label for="islem_yapilan_acente">İşlem Yapılan Acente : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_abon_4" value='<?php echo($_SESSION['policyScreen']['acn_must']['must_unvani']) ?>' readonly>
+                                        <input type="text" class="form-control form-control-sm" name="edt_abon_4" id="edt_abon_4" value='<?php echo($_SESSION['policyScreen']['acn_must']['must_unvani']) ?>' readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="abonman_flotan_no">Abonman / Flotan No : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_abon_5" value='<?php echo($_SESSION['policyScreen']['productId']) ?>' readonly>
+                                        <input type="text" class="form-control form-control-sm" name="edt_abon_5" id="edt_abon_5" value='' readonly>
                                     </div>
                                 </div>
                                 <hr>
@@ -60,18 +60,18 @@
                                     <div class="col-md-6 mb-1">
                                         <label for="teklif_tarihi">Teklif Tarihi : </label>
                                         <div class="input-group mb-1">
-                                            <input class="form-control form-control-sm"  id="datepicker" type="text" value="" readonly>
+                                            <input class="form-control form-control-sm" name="teklif_tarihi" id="teklif_tarihi" type="text" value="" readonly>
                                             <div class="input-group-append">
-                                                <span onclick="show_datepicker();" class="input-group-text cursor"><i class="fas fa-calendar"></i></span>
+                                                <span onclick="show_datepicker();" class="input-group-text cursor"><i class="fas fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1">
                                         <label for="tanzim_tarihi">Tanzim Tarihi : </label>
                                         <div class="input-group mb-1">
-                                            <input class="form-control form-control-sm"  id="datepicker_tanzim" type="text" value="" readonly>
+                                            <input class="form-control form-control-sm" name="tanzim_tarihi"  id="tanzim_tarihi" type="text" value="" readonly>
                                             <div class="input-group-append">
-                                                <span onclick="show_tanzim();" class="input-group-text cursor"><i class="fas fa-calendar"></i></span>
+                                                <span onclick="show_tanzim();" class="input-group-text cursor"><i class="fas fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -80,15 +80,15 @@
                                     <div class="col-md-6 mb-1">
                                         <label for="yükleme_tarihi">Yükleme Tarihi : </label>
                                         <div class="input-group mb-1">
-                                            <input class="form-control form-control-sm"  id="datepicker_yükleme" type="text" value="" readonly>
+                                            <input class="form-control form-control-sm" name="yukleme_tarihi"  id="yukleme_tarihi" type="text" value="" readonly>
                                             <div class="input-group-append">
-                                                <span onclick="show_yükleme();" class="input-group-text cursor"><i class="fas fa-calendar"></i></span>
+                                                <span onclick="show_yükleme();" class="input-group-text cursor"><i class="fas fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="döviz_cinci_kuru" >Döviz Cinsi/Kuru : </label>
-                                        <select <?php foreach($_SESSION['policyScreen']['doviz_kurlari'] as $key => $value) ?> id="inputState" class="custom-select custom-select-sm">
+                                        <label for="döviz_cinsi_kuru" >Döviz Cinsi/Kuru : </label>
+                                        <select <?php foreach($_SESSION['policyScreen']['doviz_kurlari'] as $key => $value) ?> name="doviz_cinsi" id="doviz_cinsi" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['doviz_kurlari'] as $doviz_kurlari) {
                                                     
@@ -113,8 +113,8 @@
                                 <legend class="product_border">İstatistik Bilgiler</legend>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigorta_Ettiren" >Teminat Tipi : </label>
-                                        <select id="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <label for="teminat_tipi" >Teminat Tipi : </label>
+                                        <select id="edt_ist_TDG" name="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $teminat_tipi) {
                                                     if($teminat_tipi['ist_adi'] == "Teminat Tipi"){
@@ -133,9 +133,9 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">Emtea Cinsi : </label>
+                                        <label for="emtea_cinsi">Emtea Cinsi : </label>
                                         <div class="input-group mb-1">
-                                            <select id="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                            <select id="edt_ist_EMK" name="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $emtea_cinsi) {
                                                     if($emtea_cinsi['ist_adi'] == "Emtia Cinsi"){
@@ -158,7 +158,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="tasima_türü" >Taşıma Türü : </label>
-                                        <select id="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_TT7" name="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $tasima_turu) {
                                                     if($tasima_turu['ist_adi'] == "Taşima Türü"){
@@ -179,7 +179,7 @@
                                     <div class="col-md-6 mb-1">
                                         <label for="ilave_bedel">İlave Bedel : </label>
                                         <div class="input-group mb-1">
-                                            <select id="edt_ist_IBO" class="custom-select custom-select-sm">
+                                            <select id="edt_ist_IBO" name="edt_ist_IBO" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $ilave_bedel) {
                                                     if($ilave_bedel['ist_adi'] == "İlave Bedel Orani"){
@@ -202,8 +202,8 @@
                                 <hr>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="teklif_tarihi">Yurtiçi-Yurtdışı : </label>
-                                        <select id="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <label for="yurtici_yurtdisi">Yurtiçi-Yurtdışı : </label>
+                                        <select id="edt_ist_YIY" name="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $yurticdis) {
                                                     if($yurticdis['ist_adi'] == "Yurt İçi-Y.Dişi"){
@@ -224,8 +224,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="teklif_tarihi">Kalkış Ülkesi : </label>
-                                        <select id="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <label for="kalkis_ulkesi">Kalkış Ülkesi : </label>
+                                        <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $policeDetail) {
                                                     if($policeDetail['ist_adi'] == "Kalkiş Ülkesi"){
@@ -244,8 +244,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="tanzim_tarihi">Kalkış İli : </label>
-                                        <select id="edt_ist_BIL" class="custom-select custom-select-sm">
+                                        <label for="kalkis_ili">Kalkış İli : </label>
+                                        <select id="edt_ist_BIL" name="edt_ist_BIL" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $kalkis_ili) {
                                                     if($kalkis_ili['ist_adi'] == "Kalkiş İli"){
@@ -266,8 +266,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="yükleme_tarihi">Varış Ülkesi : </label>
-                                        <select id="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <label for="varis_ulkesi">Varış Ülkesi : </label>
+                                        <select id="edt_ist_BTU" name="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $kalkis_ili) {
                                                     if($kalkis_ili['ist_adi'] == "Variş Ülkesi"){
@@ -286,8 +286,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="döviz_cinci_kuru" >Varış İli : </label>
-                                        <select id="edt_ist_BIS" class="custom-select custom-select-sm">
+                                        <label for="varis_ili" >Varış İli : </label>
+                                        <select id="edt_ist_BIS" name="edt_ist_BIS" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $varisIli) {
                                                     if($varisIli['ist_adi'] == "Variş İli"){
@@ -308,8 +308,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="yükleme_tarihi">Ambalaj Cinsi : </label>
-                                        <select id="edt_ist_AMC" class="custom-select custom-select-sm">
+                                        <label for="ambalaj_cinsi">Ambalaj Cinsi : </label>
+                                        <select id="edt_ist_AMC" name="edt_ist_AMC" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $amb_cinsi) {
                                                     if($amb_cinsi['ist_adi'] == "Ambalaj Cinsi"){
@@ -328,8 +328,8 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="döviz_cinci_kuru" >Gemi İMO No : </label>
-                                        <select id="edt_ist_GEM" class="custom-select custom-select-sm">
+                                        <label for="gemi_imo_no" >Gemi İMO No : </label>
+                                        <select id="edt_ist_GEM" name="edt_ist_GEM" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $gemi_adi) {
                                                     if($gemi_adi['ist_adi'] == "Gemi Adi/Imo"){
@@ -349,7 +349,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <button style="float: right !important" id="ist_btn" type="submit" class="btn btn-secondary btn-sm">Kontrol Et</button>
+                                <button style="float: right !important" id="ist_btn" type="button" class="btn btn-secondary btn-sm">Kontrol Et</button>
                             </fieldset>
                         </div>
                         <div id="matbu_bil" style="float:right; width: 32.5% !important">
@@ -357,55 +357,55 @@
                                 <legend class="product_border">Matbu Bilgiler</legend>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigorta_Ettiren" >Kalkış Yeri : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_4" value="">
+                                        <label for="kalkis_yeri" >Kalkış Yeri : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_4" id="edt_matbu_4" value="" readonly>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">Varış Yeri : </label>
+                                        <label for="varis_yeri">Varış Yeri : </label>
                                         <div class="input-group mb-1">
-                                            <input class="form-control form-control-sm" id="edt_matbu_7" type="text" value="BERLİN">
+                                            <input class="form-control form-control-sm" name="edt_matbu_7" id="edt_matbu_7" type="text" value="BERLİN" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="police_cinsi">Emtea Açıklama : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_11" value="C">
+                                        <label for="emtea_aciklama">Emtea Açıklama : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_11" id="edt_matbu_11" value="C" readonly>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="islem_yapilan_acente">Vasıta Cinsi : </label>
-                                        <input type="text" class="form-control form-control-sm" id="keyvalue" name="keyvalue" value="GEMİ">
+                                        <label for="vasita_cinsi">Vasıta Cinsi : </label>
+                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_13" name="edt_matbu_13" value="" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="abonman_flotan_no">Adet : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_22" value="22">
+                                        <label for="adet">Adet : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_22" id="edt_matbu_22" value="" required>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="abonman_flotan_no">Ağırlık : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_24" value="3000">
+                                        <label for="agirlik">Ağırlık : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_24" id="edt_matbu_24" value="" required>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="teklif_tarihi">Kalkış Yeri (İNG.) : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_8" value="">
+                                        <label for="kalkis_yeri_ing">Kalkış Yeri (İNG.) : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_8" id="edt_matbu_8" value="" readonly>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label for="tanzim_tarihi">Varış Yeri (İNG.) : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_9" value="BERLİN">
+                                        <label for="varis_yeri_ing">Varış Yeri (İNG.) : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_9" id="edt_matbu_9" value="" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="yükleme_tarihi">Emtea Açıklama (İNG) : </label>
-                                        <input type="text" class="form-control form-control-sm" id="edt_matbu_12" value="1.1.1990">
+                                        <label for="emtea_aciklama_ing">Emtea Açıklama (İNG.) : </label>
+                                        <input type="text" class="form-control form-control-sm" name="edt_matbu_12" id="edt_matbu_12" value="" readonly>
                                     </div>
                                 </div>
                                 <br>
-                                <button style="float: right !important; margin-top: 14% !important" id="matbu_btn" type="button" class="btn btn-secondary btn-sm">Kontrol et</button>
+                                <button style="float: right !important; margin-top: 14% !important" id="matbu_btn" type="submit" class="btn btn-secondary btn-sm">Kontrol et</button>
                             </fieldset>
                         </div>
                         <div id="teminat_div" style="float: left; width: 32.5% !important">
@@ -413,32 +413,32 @@
                                 <legend class="product_border">TEMİNATLAR</legend>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="temimatlar">I.C.C.(A) : </label>
-                                        <input class="form-control form-control-sm" id="edt_tem_2" type="number" value="100.000" >
+                                        <label for="tem_icca">I.C.C.(A) : </label>
+                                        <input class="form-control form-control-sm" name="edt_tem_2" id="edt_tem_2" type="number" onkeydown="return event.keyCode !== 69" value="100.000" >
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">I.C.C.(AİR) : </label>
-                                        <input type="number" class="form-control form-control-sm" id="edt_tem_3" value="" >
+                                        <label for="tem_iccair">I.C.C.(AİR) : </label>
+                                        <input type="number" class="form-control form-control-sm" onkeydown="return event.keyCode !== 69" name="edt_tem_3" id="edt_tem_3" value="" >
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">I.C.C.(C) : </label>
-                                        <input type="number" class="form-control form-control-sm" id="edt_tem_4" value="" >
+                                        <label for="tem_iccc">I.C.C.(C) : </label>
+                                        <input type="number" class="form-control form-control-sm" onkeydown="return event.keyCode !== 69" name="edt_tem_4" id="edt_tem_4" value="" >
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">GREV : </label>
-                                        <input type="number" class="form-control form-control-sm" id="edt_tem_5" value="" >
+                                        <label for="grev">GREV : </label>
+                                        <input type="number" class="form-control form-control-sm" onkeydown="return event.keyCode !== 69" name="edt_tem_5" id="edt_tem_5" value="" >
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
-                                        <label for="sigortali">HARP/GREV (Abonman Teminat) : </label>
-                                        <input type="number" class="form-control form-control-sm" id="edt_tem_6" value="" required>
+                                        <label for="harp_grev">HARP/GREV (Abonman Teminat) : </label>
+                                        <input type="number" class="form-control form-control-sm" onkeydown="return event.keyCode !== 69" name="edt_tem_6" id="edt_tem_6" value="" >
                                     </div>
                                 </div>
                             </fieldset>
@@ -452,7 +452,15 @@
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <script src="../js/jquery.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
+<script>
+    function onSubmit( form ){
+        var data = JSON.stringify( $(form).serializeArray() );
+        console.log( data );
+        return false;
+    }
+</script>
 
 <script>
     $(document).ready(function(){
@@ -461,17 +469,33 @@
 </script>
 <script>
     $('select').on('change', function() {
-        var optSelect = $('#edt_ist_TDG option:selected').val();
-        alert( this.value );
+        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        $("select option:not(:selected)").removeClass("selected");
+        $("select option:selected").addClass("selected");
     });
 </script>
+
+<script>
+    $('select').on('change', function() {
+        //var optSelect = $('#edt_ist_TDG option:selected').val();
+        $("#matbu_bil").css("display", "none");
+        $("#teminat_div").css("display", "none");
+    });
+</script>
+<script>
+    $('input').bind('input', function() { 
+    if($(this).val() == ''){
+        $("#teminat_div").css("display", "none");
+    };
+});
+</script>
+    
 <script>
     var bauVal = $("#edt_ist_BAU").val();
     $("#edt_matbu_4").val(bauVal);
     $("#edt_matbu_8").val(bauVal);
 
     $('#edt_ist_BAU').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
         var getVal = this.value ;
         $("#edt_matbu_4").val(getVal);
         $("#edt_matbu_8").val(getVal);
@@ -483,7 +507,6 @@
     $("#edt_matbu_9").val(btuVal);
 
     $('#edt_ist_BTU').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
         var getVal = this.value ;
         $("#edt_matbu_7").val(getVal);
         $("#edt_matbu_9").val(getVal);
@@ -495,7 +518,6 @@
     $("#edt_matbu_12").val(emkVal);
 
     $('#edt_ist_EMK').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
         var getVal = this.value ;
         $("#edt_matbu_11").val(getVal);
         $("#edt_matbu_12").val(getVal);
@@ -505,53 +527,53 @@
 
 <script>
     $( function() {
-      $( "#datepicker" ).datepicker({
+      $( "#teklif_tarihi" ).datepicker({
         monthNames: ['Ocak', 'Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
         dayNamesMin: ['Pa','Pt','Sl','Çar','Perş','Cu','Ct'],
         firstday:1,
         dateFormat: 'dd/mm/yy'
       });
-       $("#datepicker").datepicker("setDate", new Date());
+       $("#teklif_tarihi").datepicker("setDate", new Date());
     } );
 </script>
 
 <script>
     $( function() {
-      $( "#datepicker_tanzim" ).datepicker({
+      $( "#tanzim_tarihi" ).datepicker({
         monthNames: ['Ocak', 'Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
         dayNamesMin: ['Pa','Pt','Sl','Çar','Perş','Cu','Ct'],
         firstday:1,
         dateFormat: 'dd/mm/yy'
       });
-      $("#datepicker_tanzim").datepicker("setDate", new Date());
+      $("#tanzim_tarihi").datepicker("setDate", new Date());
 
     } );
 </script>
 <script>
     $( function() {
-      $( "#datepicker_yükleme" ).datepicker({
+      $( "#yukleme_tarihi" ).datepicker({
         monthNames: ['Ocak', 'Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
         dayNamesMin: ['Pa','Pt','Sl','Çar','Perş','Cu','Ct'],
         firstday:1,
         dateFormat: 'dd/mm/yy'
       });
-      $("#datepicker_yükleme").datepicker("setDate", new Date());
+      $("#yukleme_tarihi").datepicker("setDate", new Date());
 
     } );
 </script>
 <script>
     function show_datepicker(){
-        $('#datepicker').datepicker('show');
+        $('#teklif_tarihi').datepicker('show');
     }
 </script>
 <script>
     function show_tanzim(){
-        $('#datepicker_tanzim').datepicker('show');
+        $('#tanzim_tarihi').datepicker('show');
     }
 </script>
 <script>
     function show_yükleme(){
-        $('#datepicker_yükleme').datepicker('show');
+        $('#yukleme_tarihi').datepicker('show');
     }
 </script>
 <?php require APPROOT . '/views/inc/footer.php' ; ?>
@@ -572,9 +594,8 @@
     $("#edt_abon_2").on("change paste keyup", function() {
     var sigortaliVal = $(this).val();
     if(sigortaliVal == ""){
-        //$("#ist_bil").css("display", "none  ");
-        $("#matbu_bil").css("display", "none  ");
-        $("#teminat_div").css("display", "none  ");
+        $("#matbu_bil").css("display", "none");
+        $("#teminat_div").css("display", "none");
     } 
     });
 </script>
@@ -586,7 +607,7 @@
         if(showDiv = 1){
             $("#matbu_bil").css("display", "inline-block");
         }else{
-            $("#matbu_bil").css("display", "none  ");
+            $("#matbu_bil").css("display", "none");
         }
     });
     
@@ -595,6 +616,7 @@
 <script>
     $("#teminat_div").css("display", "none");
     $("#matbu_btn").click(function(){
+        if($("#edt_matbu_22").val() != '' && $("#edt_matbu_13").val() != '' && $("#edt_matbu_24").val() != '' ){;
         var showDiv = 1;
         if(showDiv = 1){
             $("#teminat_div").css("display", "inline-block");
@@ -602,7 +624,10 @@
                 scrollTop: $("#teminat_div").offset().top},
                 'slow');
         }else{
-            $("#teminat_div").css("display", "none  ");
+            $("#teminat_div").css("display", "none");
         }
-    });
+    }
+});
 </script>
+
+
