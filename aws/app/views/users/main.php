@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <!-- Display Content IF NO Error -->
-<?php if(empty($_SESSION['logindetails']['errorMessage'])){ ?>
+<?php if(empty($_SESSION['logindetails']['errorMessage']) && empty($_SESSION['policyScreen']['errorMessage'])){ ?>
 <div id="wrapper">
     <div id="content-wrapper">
         <div class="container-fluid">
@@ -443,6 +443,16 @@
                                 </div>
                             </fieldset>
                         </div>
+                        <?php
+                            foreach($_SESSION['policyScreen']['police_ist'] as $teminat_tipi) {
+                                if($teminat_tipi['ist_adi'] == "Teminat Tipi"){
+                                    echo($teminat_tipi['selected_deger_kod']);
+
+                              }}
+                        ?>
+                        <div id="text"></div>
+                        <hr>
+                        <div id="text2"></div>
                     </form>
                 </div>
             </div>
@@ -453,6 +463,33 @@
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
+<script>
+json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
+
+document.getElementById("text").innerHTML = json_PolicyScreen;
+
+json_object = JSON.parse(json_PolicyScreen);
+
+$('#edt_ist_TDG').on('change', function() {
+
+    var id = $(this).children(":selected").attr("id");
+
+    json_object.police_ist[6].selected_deger_kod = id; 
+
+    json_PolicyScreen = JSON.stringify(json_object);
+    document.getElementById("text2").innerHTML += json_PolicyScreen;
+
+});
+
+</script>
+
+<script>
+    $('#edt_ist_TDG').on('change', function() {
+        var id = $(this).children(":selected").attr("id");
+        alert(id); 
+});
+    </script>
 
 <script>
     function onSubmit( form ){
@@ -580,10 +617,10 @@
 <!-- Display Error Message When Error Occured -->
 <div id="errorDiv" class="alert alert-danger" role="alert">
     <h6 class="alert-heading">Dikkat !</h6>
-    <?php echo $_SESSION['logindetails']['errorMessage'] ?>
+    <?php echo $_SESSION['policyScreen']['errorMessage'] ?>
 </div>
 <script>
-    <?php if(empty($_SESSION['logindetails']['errorMessage'])){ ?>
+    <?php if(empty($_SESSION['policyScreen']['errorMessage']) && empty($_SESSION['logindetails']['errorMessage'])){ ?>
         document.getElementById("errorDiv").style.visibility = "hidden";
     <?php }else{ ?>
         document.getElementById("errorDiv").style.visibility = "none";
