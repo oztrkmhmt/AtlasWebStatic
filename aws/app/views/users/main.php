@@ -99,7 +99,7 @@
                                                         $selected='';
                                                     }
                                                     ?>
-                                            <option <?php echo($selected) ?>id="" value="<?= $doviz_kurlari['doviz_kodu'] ?>"><?= $doviz_kurlari['doviz_kodu']  ?></option>
+                                            <option <?php echo($selected) ?>id="<?= $doviz_kurlari['doviz_kuru'] ?>" value="<?= $doviz_kurlari['doviz_kodu'] ?>"><?= $doviz_kurlari['doviz_kodu']  ?></option>
                                             <?php
                                                 }
                                             ?>
@@ -452,6 +452,8 @@
                         ?>
                         <div id="text"></div>
                         <hr>
+                        <hr>
+                        <hr>
                         <div id="text2"></div>
                     </form>
                 </div>
@@ -465,27 +467,56 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
 <script>
+
 json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
 
 document.getElementById("text").innerHTML = json_PolicyScreen;
 
 json_object = JSON.parse(json_PolicyScreen);
 
-$('#edt_ist_TDG').on('change', function() {
+$('select').on('change', function() {
 
-    var id = $(this).children(":selected").attr("id");
+    var tdg_id = $('#edt_ist_TDG').children(":selected").attr("id");
+    json_object.police_ist[6].selected_deger_kod = tdg_id; 
 
-    json_object.police_ist[6].selected_deger_kod = id; 
+    var tt7_id = $('#edt_ist_TT7').children(":selected").attr("id");
+    json_object.police_ist[7].selected_deger_kod = tt7_id; 
+
+    var emk_id = $('#edt_ist_EMK').children(":selected").attr("id");
+    json_object.police_ist[8].selected_deger_kod = emk_id; 
+
+    var ibo_id = $('#edt_ist_IBO').children(":selected").attr("id");
+    json_object.police_ist[18].selected_deger_kod = ibo_id; 
+
+    var yiy_id = $('#edt_ist_YIY').children(":selected").attr("id");
+    json_object.police_ist[0].selected_deger_kod = yiy_id;
+     
+    var bau_id = $('#edt_ist_BAU').children(":selected").attr("id");
+    json_object.police_ist[1].selected_deger_kod = bau_id;
+
+    var bil_id = $('#edt_ist_BIL').children(":selected").attr("id");
+    json_object.police_ist[2].selected_deger_kod = bil_id;
+
+    var btu_id = $('#edt_ist_BTU').children(":selected").attr("id");
+    json_object.police_ist[3].selected_deger_kod = btu_id; 
+
+    var bis_id = $('#edt_ist_BIS').children(":selected").attr("id");
+    json_object.police_ist[4].selected_deger_kod = bis_id;  
+
+    var amc_id = $('#edt_ist_AMC').children(":selected").attr("id");
+    json_object.police_ist[9].selected_deger_kod = amc_id;
+
+    var gem_id = $('#edt_ist_GEM').children(":selected").attr("id");
+    json_object.police_ist[10].selected_deger_kod = gem_id;
 
     json_PolicyScreen = JSON.stringify(json_object);
     document.getElementById("text2").innerHTML += json_PolicyScreen;
-
 });
 
 </script>
 
 <script>
-    $('#edt_ist_TDG').on('change', function() {
+    $('select').on('change', function() {
         var id = $(this).children(":selected").attr("id");
         alert(id); 
 });
