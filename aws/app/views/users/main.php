@@ -443,14 +443,9 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <?php
-                            foreach($_SESSION['policyScreen']['police_ist'] as $teminat_tipi) {
-                                if($teminat_tipi['ist_adi'] == "Teminat Tipi"){
-                                    echo($teminat_tipi['selected_deger_kod']);
-
-                              }}
-                        ?>
                         <div id="text"></div>
+                        <hr>
+                        <hr>
                         <hr>
                         <hr>
                         <hr>
@@ -473,6 +468,8 @@ json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
 document.getElementById("text").innerHTML = json_PolicyScreen;
 
 json_object = JSON.parse(json_PolicyScreen);
+
+console.log(json_object.police_ist[5])
 
 $('select').on('change', function() {
 
@@ -510,9 +507,11 @@ $('select').on('change', function() {
     json_object.police_ist[10].selected_deger_kod = gem_id;
 
     json_PolicyScreen = JSON.stringify(json_object);
+    console.log(json_PolicyScreen)
     document.getElementById("text2").innerHTML += json_PolicyScreen;
+    
 });
-
+   
 </script>
 
 <script>

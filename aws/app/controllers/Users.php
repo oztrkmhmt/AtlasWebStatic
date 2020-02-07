@@ -70,6 +70,7 @@ class Users extends Controller {
         session_destroy();
         redirect('users/login');
     }
+    
     //Atlas Web Service Main
     public function main() {
         if(!isLoggedIn()){

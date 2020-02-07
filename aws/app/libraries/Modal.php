@@ -1,6 +1,6 @@
 <?php
 /*
-   * App Müşteri Arama Class
+   * App Modal Class
 */
 class Modal {
     //Error Modal
@@ -11,7 +11,7 @@ class Modal {
             <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                 <div class="modal-content">
                     <div style="background-color: whitesmoke !important;" class="modal-header">
-                        <h6 class="modal-title" id="exampleModalLabel"><?php echo($title) ?></h6>
+                    <h6 style="color:slategray !important" class="modal-title" id="exampleModalLabel"><?php echo($title) ?></h6>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row">
