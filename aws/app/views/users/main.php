@@ -91,7 +91,6 @@
                                         <select <?php foreach($_SESSION['policyScreen']['doviz_kurlari'] as $key => $value) ?> name="doviz_cinsi" id="doviz_cinsi" class="custom-select custom-select-sm">
                                             <?php
                                                 foreach($_SESSION['policyScreen']['doviz_kurlari'] as $doviz_kurlari) {
-                                                    
                                                     $selected='';
                                                     if ($key==$selected){
                                                         $selected='selected="selected"';
@@ -99,7 +98,7 @@
                                                         $selected='';
                                                     }
                                                     ?>
-                                            <option <?php echo($selected) ?>id="<?= $doviz_kurlari['doviz_kuru'] ?>" value="<?= $doviz_kurlari['doviz_kodu'] ?>"><?= $doviz_kurlari['doviz_kodu']  ?></option>
+                                            <option <?php echo($selected) ?>id="<?= $doviz_kurlari['doviz_kodu'] ?>" value="<?= $doviz_kurlari['doviz_kodu'] ?>"><?= $doviz_kurlari['doviz_kodu']  ?></option>
                                             <?php
                                                 }
                                             ?>
@@ -114,7 +113,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="teminat_tipi" >Teminat Tipi : </label>
-                                        <select id="edt_ist_TDG" name="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                        <select id="edt_ist_TDG" name="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $teminat_tipi) {
                                                     if($teminat_tipi['ist_adi'] == "Teminat Tipi"){
@@ -135,7 +134,7 @@
                                     <div class="col-md-6 mb-1">
                                         <label for="emtea_cinsi">Emtea Cinsi : </label>
                                         <div class="input-group mb-1">
-                                            <select id="edt_ist_EMK" name="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                            <select id="edt_ist_EMK" name="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $emtea_cinsi) {
                                                     if($emtea_cinsi['ist_adi'] == "Emtia Cinsi"){
@@ -158,7 +157,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="tasima_türü" >Taşıma Türü : </label>
-                                        <select id="edt_ist_TT7" name="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                        <select id="edt_ist_TT7" name="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $tasima_turu) {
                                                     if($tasima_turu['ist_adi'] == "Taşima Türü"){
@@ -180,22 +179,22 @@
                                         <label for="ilave_bedel">İlave Bedel : </label>
                                         <div class="input-group mb-1">
                                             <select id="edt_ist_IBO" name="edt_ist_IBO" class="custom-select custom-select-sm">
-                                            <?php
-                                                foreach($_SESSION['policyScreen']['police_ist'] as $ilave_bedel) {
-                                                    if($ilave_bedel['ist_adi'] == "İlave Bedel Orani"){
-                                                    foreach($ilave_bedel['ist_deger_tab'] as $key => $ilave_bedelList){ 
-                                                    $selected='';
-                                                    if ($key==$selected){
-                                                        $selected='selected="selected"';
-                                                    }else{
+                                                <?php
+                                                    foreach($_SESSION['policyScreen']['police_ist'] as $ilave_bedel) {
+                                                        if($ilave_bedel['ist_adi'] == "İlave Bedel Orani"){
+                                                        foreach($ilave_bedel['ist_deger_tab'] as $key => $ilave_bedelList){ 
                                                         $selected='';
-                                                    }
-                                                    ?>
-                                            <option <?php echo($selected) ?>id="<?= $ilave_bedelList['deger_kod'] ?>" value="<?= $ilave_bedelList['deger_adi'] ?>"><?= $ilave_bedelList['deger_adi']  ?></option>
-                                            <?php
-                                                }}}
-                                            ?>
-                                        </select>
+                                                        if ($key==$selected){
+                                                            $selected='selected="selected"';
+                                                        }else{
+                                                            $selected='';
+                                                        }
+                                                        ?>
+                                                <option <?php echo($selected) ?>id="<?= $ilave_bedelList['deger_kod'] ?>" value="<?= $ilave_bedelList['deger_adi'] ?>"><?= $ilave_bedelList['deger_adi']  ?></option>
+                                                <?php
+                                                    }}}
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -203,7 +202,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="yurtici_yurtdisi">Yurtiçi-Yurtdışı : </label>
-                                        <select id="edt_ist_YIY" name="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                        <select id="edt_ist_YIY" name="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $yurticdis) {
                                                     if($yurticdis['ist_adi'] == "Yurt İçi-Y.Dişi"){
@@ -225,7 +224,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="kalkis_ulkesi">Kalkış Ülkesi : </label>
-                                        <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                        <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $policeDetail) {
                                                     if($policeDetail['ist_adi'] == "Kalkiş Ülkesi"){
@@ -267,7 +266,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="varis_ulkesi">Varış Ülkesi : </label>
-                                        <select id="edt_ist_BTU" name="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
+                                        <select id="edt_ist_BTU" name="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $kalkis_ili) {
                                                     if($kalkis_ili['ist_adi'] == "Variş Ülkesi"){
@@ -452,7 +451,7 @@
 </div>
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
-<?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanları Lütfen Doldurunuz.','#721c24','whitesmoke','whitesmoke')?>
+<?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
@@ -497,13 +496,11 @@
         var gem_id = $('#edt_ist_GEM').children(":selected").attr("id");
         json_object.police_ist[10].selected_deger_kod = gem_id;
       
-
     });
         function policyScreen_Stringfy(){
             if(document.getElementById('edt_ist_TDG').style.borderColor!='tomato' && document.getElementById('edt_ist_EMK').style.borderColor!='tomato' && document.getElementById('edt_ist_TT7').style.borderColor!='tomato' && document.getElementById('edt_ist_YIY').style.borderColor!='tomato' && document.getElementById('edt_ist_BAU').style.borderColor!='tomato' && document.getElementById('edt_ist_BTU').style.borderColor!='tomato') {
                 json_PolicyScreen = JSON.stringify(json_object);
                 document.getElementById("policyTextDiv").innerHTML += json_PolicyScreen;
-
             }else{
                 $('#istAlertModal').modal('show');
             }
@@ -522,23 +519,28 @@
 
     $('#edt_ist_TDG').on('click', function() {
         document.getElementById('edt_ist_TDG').style.borderColor='#ced4da';
+        $("#edt_ist_TDG").popover('disable');
     });
     $('#edt_ist_BTU').on('click', function() {
         document.getElementById('edt_ist_BTU').style.borderColor='#ced4da';
+        $("#edt_ist_BTU").popover('disable');
     });
     $('#edt_ist_TT7').on('click', function() {
         document.getElementById('edt_ist_TT7').style.borderColor='#ced4da';
+        $("#edt_ist_TT7").popover('disable');
     });
     $('#edt_ist_EMK').on('click', function() {
         document.getElementById('edt_ist_EMK').style.borderColor='#ced4da';
+        $("#edt_ist_EMK").popover('disable');
     });
     $('#edt_ist_YIY').on('click', function() {
         document.getElementById('edt_ist_YIY').style.borderColor='#ced4da';
+        $("#edt_ist_YIY").popover('disable');
     });
     $('#edt_ist_BAU').on('click', function() {
         document.getElementById('edt_ist_BAU').style.borderColor='#ced4da';
+        $("#edt_ist_BAU").popover('disable');
     });
-
     $('select').on('change', function() {
         var id = $(this).children(":selected").attr("id");
         alert(id); 
@@ -552,7 +554,6 @@
 </script>
 <script>
     $('select').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
         $("select option:not(:selected)").removeClass("selected");
         $("select option:selected").addClass("selected");
     });
@@ -560,7 +561,6 @@
 
 <script>
     $('select').on('change', function() {
-        //var optSelect = $('#edt_ist_TDG option:selected').val();
         $("#matbu_bil").css("display", "none");
         $("#teminat_div").css("display", "none");
     });
