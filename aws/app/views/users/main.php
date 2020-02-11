@@ -13,7 +13,7 @@
                 </div>
                 <!-- Show Product Detail-->
                 <div class="card-body">
-                    <form id="form_abonman" onsubmit='return onSubmit(this)' action="" method="post">
+                    <form id="form_abonman" action="" method="post">
                         <div style="float: left; width: 32.5% !important">
                             <fieldset  class="product_border fieldsetClass">
                                 <legend class="product_border">Genel Bilgiler ( Abonman )</legend>
@@ -114,7 +114,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="teminat_tipi" >Teminat Tipi : </label>
-                                        <select id="edt_ist_TDG" name="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_TDG" name="edt_ist_TDG" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $teminat_tipi) {
                                                     if($teminat_tipi['ist_adi'] == "Teminat Tipi"){
@@ -135,7 +135,7 @@
                                     <div class="col-md-6 mb-1">
                                         <label for="emtea_cinsi">Emtea Cinsi : </label>
                                         <div class="input-group mb-1">
-                                            <select id="edt_ist_EMK" name="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                            <select id="edt_ist_EMK" name="edt_ist_EMK" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $emtea_cinsi) {
                                                     if($emtea_cinsi['ist_adi'] == "Emtia Cinsi"){
@@ -158,7 +158,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="tasima_türü" >Taşıma Türü : </label>
-                                        <select id="edt_ist_TT7" name="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_TT7" name="edt_ist_TT7" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $tasima_turu) {
                                                     if($tasima_turu['ist_adi'] == "Taşima Türü"){
@@ -203,7 +203,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="yurtici_yurtdisi">Yurtiçi-Yurtdışı : </label>
-                                        <select id="edt_ist_YIY" name="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_YIY" name="edt_ist_YIY" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $yurticdis) {
                                                     if($yurticdis['ist_adi'] == "Yurt İçi-Y.Dişi"){
@@ -225,7 +225,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="kalkis_ulkesi">Kalkış Ülkesi : </label>
-                                        <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $policeDetail) {
                                                     if($policeDetail['ist_adi'] == "Kalkiş Ülkesi"){
@@ -267,7 +267,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6 mb-1">
                                         <label for="varis_ulkesi">Varış Ülkesi : </label>
-                                        <select id="edt_ist_BTU" name="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan doldurulması zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
+                                        <select id="edt_ist_BTU" name="edt_ist_BTU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm " required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $kalkis_ili) {
                                                     if($kalkis_ili['ist_adi'] == "Variş Ülkesi"){
@@ -349,7 +349,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <button style="float: right !important" id="ist_btn" type="button" class="btn btn-secondary btn-sm">Kontrol Et</button>
+                                <button style="float: right !important" onclick="policyScreen_Stringfy();" id="ist_btn" type="button" class="btn btn-secondary btn-sm">Kontrol Et</button>
                             </fieldset>
                         </div>
                         <div id="matbu_bil" style="float:right; width: 32.5% !important">
@@ -443,13 +443,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div id="text"></div>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <hr>
-                        <div id="text2"></div>
+                        <div id="policyTextDiv"></div>
                     </form>
                 </div>
             </div>
@@ -458,76 +452,98 @@
 </div>
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
+<?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanları Lütfen Doldurunuz.','#721c24','whitesmoke','whitesmoke')?>
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
 <script>
 
-json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
+    json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
 
-document.getElementById("text").innerHTML = json_PolicyScreen;
+    json_object = JSON.parse(json_PolicyScreen);
 
-json_object = JSON.parse(json_PolicyScreen);
+    $('select').on('change', function() {
 
-console.log(json_object.police_ist[5])
+        var tdg_id = $('#edt_ist_TDG').children(":selected").attr("id");
+        json_object.police_ist[6].selected_deger_kod = tdg_id; 
 
-$('select').on('change', function() {
+        var tt7_id = $('#edt_ist_TT7').children(":selected").attr("id");
+        json_object.police_ist[7].selected_deger_kod = tt7_id; 
 
-    var tdg_id = $('#edt_ist_TDG').children(":selected").attr("id");
-    json_object.police_ist[6].selected_deger_kod = tdg_id; 
+        var emk_id = $('#edt_ist_EMK').children(":selected").attr("id");
+        json_object.police_ist[8].selected_deger_kod = emk_id; 
 
-    var tt7_id = $('#edt_ist_TT7').children(":selected").attr("id");
-    json_object.police_ist[7].selected_deger_kod = tt7_id; 
+        var ibo_id = $('#edt_ist_IBO').children(":selected").attr("id");
+        json_object.police_ist[18].selected_deger_kod = ibo_id; 
 
-    var emk_id = $('#edt_ist_EMK').children(":selected").attr("id");
-    json_object.police_ist[8].selected_deger_kod = emk_id; 
+        var yiy_id = $('#edt_ist_YIY').children(":selected").attr("id");
+        json_object.police_ist[0].selected_deger_kod = yiy_id;
+        
+        var bau_id = $('#edt_ist_BAU').children(":selected").attr("id");
+        json_object.police_ist[1].selected_deger_kod = bau_id;
 
-    var ibo_id = $('#edt_ist_IBO').children(":selected").attr("id");
-    json_object.police_ist[18].selected_deger_kod = ibo_id; 
+        var bil_id = $('#edt_ist_BIL').children(":selected").attr("id");
+        json_object.police_ist[2].selected_deger_kod = bil_id;
 
-    var yiy_id = $('#edt_ist_YIY').children(":selected").attr("id");
-    json_object.police_ist[0].selected_deger_kod = yiy_id;
-     
-    var bau_id = $('#edt_ist_BAU').children(":selected").attr("id");
-    json_object.police_ist[1].selected_deger_kod = bau_id;
+        var btu_id = $('#edt_ist_BTU').children(":selected").attr("id");
+        json_object.police_ist[3].selected_deger_kod = btu_id; 
 
-    var bil_id = $('#edt_ist_BIL').children(":selected").attr("id");
-    json_object.police_ist[2].selected_deger_kod = bil_id;
+        var bis_id = $('#edt_ist_BIS').children(":selected").attr("id");
+        json_object.police_ist[4].selected_deger_kod = bis_id;  
 
-    var btu_id = $('#edt_ist_BTU').children(":selected").attr("id");
-    json_object.police_ist[3].selected_deger_kod = btu_id; 
+        var amc_id = $('#edt_ist_AMC').children(":selected").attr("id");
+        json_object.police_ist[9].selected_deger_kod = amc_id;
 
-    var bis_id = $('#edt_ist_BIS').children(":selected").attr("id");
-    json_object.police_ist[4].selected_deger_kod = bis_id;  
+        var gem_id = $('#edt_ist_GEM').children(":selected").attr("id");
+        json_object.police_ist[10].selected_deger_kod = gem_id;
+      
 
-    var amc_id = $('#edt_ist_AMC').children(":selected").attr("id");
-    json_object.police_ist[9].selected_deger_kod = amc_id;
+    });
+        function policyScreen_Stringfy(){
+            if(document.getElementById('edt_ist_TDG').style.borderColor!='tomato' && document.getElementById('edt_ist_EMK').style.borderColor!='tomato' && document.getElementById('edt_ist_TT7').style.borderColor!='tomato' && document.getElementById('edt_ist_YIY').style.borderColor!='tomato' && document.getElementById('edt_ist_BAU').style.borderColor!='tomato' && document.getElementById('edt_ist_BTU').style.borderColor!='tomato') {
+                json_PolicyScreen = JSON.stringify(json_object);
+                document.getElementById("policyTextDiv").innerHTML += json_PolicyScreen;
 
-    var gem_id = $('#edt_ist_GEM').children(":selected").attr("id");
-    json_object.police_ist[10].selected_deger_kod = gem_id;
+            }else{
+                $('#istAlertModal').modal('show');
+            }
+        }
 
-    json_PolicyScreen = JSON.stringify(json_object);
-    console.log(json_PolicyScreen)
-    document.getElementById("text2").innerHTML += json_PolicyScreen;
-    
-});
-   
 </script>
 
 <script>
+
+    document.getElementById('edt_ist_TDG').style.borderColor='tomato';
+    document.getElementById('edt_ist_BTU').style.borderColor='tomato';
+    document.getElementById('edt_ist_TT7').style.borderColor='tomato';
+    document.getElementById('edt_ist_EMK').style.borderColor='tomato';
+    document.getElementById('edt_ist_YIY').style.borderColor='tomato';
+    document.getElementById('edt_ist_BAU').style.borderColor='tomato';
+
+    $('#edt_ist_TDG').on('click', function() {
+        document.getElementById('edt_ist_TDG').style.borderColor='#ced4da';
+    });
+    $('#edt_ist_BTU').on('click', function() {
+        document.getElementById('edt_ist_BTU').style.borderColor='#ced4da';
+    });
+    $('#edt_ist_TT7').on('click', function() {
+        document.getElementById('edt_ist_TT7').style.borderColor='#ced4da';
+    });
+    $('#edt_ist_EMK').on('click', function() {
+        document.getElementById('edt_ist_EMK').style.borderColor='#ced4da';
+    });
+    $('#edt_ist_YIY').on('click', function() {
+        document.getElementById('edt_ist_YIY').style.borderColor='#ced4da';
+    });
+    $('#edt_ist_BAU').on('click', function() {
+        document.getElementById('edt_ist_BAU').style.borderColor='#ced4da';
+    });
+
     $('select').on('change', function() {
         var id = $(this).children(":selected").attr("id");
         alert(id); 
 });
     </script>
-
-<script>
-    function onSubmit( form ){
-        var data = JSON.stringify( $(form).serializeArray() );
-        console.log( data );
-        return false;
-    }
-</script>
 
 <script>
     $(document).ready(function(){
@@ -656,6 +672,7 @@ $('select').on('change', function() {
         document.getElementById("errorDiv").style.visibility = "none";
     <?php }; ?>
 </script>
+
 <!-- Sigortalı Value --> <!-- Empty ? --> <!-- Display None -->
 <script>
     $("#edt_abon_2").on("change paste keyup", function() {
@@ -669,14 +686,12 @@ $('select').on('change', function() {
 <!-- Matbu Bilgileri Show/Hide-->
 <script>
     $("#matbu_bil").css("display", "none");
-    $("#ist_btn").click(function(){
-        var showDiv = 1;
-        if(showDiv = 1){
+        $("#ist_btn").click(function(){        
+            if(document.getElementById('edt_ist_TDG').style.borderColor!='tomato' && document.getElementById('edt_ist_EMK').style.borderColor!='tomato' && document.getElementById('edt_ist_TT7').style.borderColor!='tomato' && document.getElementById('edt_ist_YIY').style.borderColor!='tomato' && document.getElementById('edt_ist_BAU').style.borderColor!='tomato' && document.getElementById('edt_ist_BTU').style.borderColor!='tomato') {
             $("#matbu_bil").css("display", "inline-block");
-        }else{
-            $("#matbu_bil").css("display", "none");
         }
     });
+  
     
 </script>
 <!-- Teminat Bilgileri Show/Hide-->
