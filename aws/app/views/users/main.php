@@ -443,6 +443,9 @@
                             </fieldset>
                         </div>
                         <div id="policyTextDiv"></div>
+                        <div class="col-md-2 mb-1">
+                            <div id="showLength"></div>
+                        </div> 
                     </form>
                 </div>
             </div>
@@ -454,6 +457,42 @@
 <?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
+
+<script>
+    json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //GET JSON
+    json_object = JSON.parse(json_PolicyScreen); //PARSE JSON
+    var pol_ist_length = json_object.police_ist.length; //Find Length Of Array
+    //Loop For Get ist_adi
+    for(i = 0; i<=pol_ist_length; i++){
+        var policeIst = json_object.police_ist[i];
+        var istatistik_adi = policeIst.ist_adi; 
+        var ist_deger_tab = policeIst.ist_deger_tab;
+        for(n=0; n<=ist_deger_tab.length; n++){
+                console.log(ist_deger_tab[n]);
+        }
+        //Check Only Browsable = 1 
+        if(json_object.police_ist[i].is_browsable == "1"){   
+            var newElement = document.createElement('select'); //Create Select Element
+            var option = document.createElement("option"); //Create Select Element's Options
+            var div = document.createElement("div");
+            newElement.id = istatistik_adi; newElement.value = istatistik_adi; //Set ids, values of Select Element
+            option.text=istatistik_adi; //Write Options
+            //Set Attributes
+            newElement.setAttribute("class","form-control form-control-sm");
+            newElement.setAttribute("style","height: calc(1em + 0.7rem + 2px) !important");
+            option.setAttribute("value", istatistik_adi);
+            //Write to div
+            newElement.innerHTML = istatistik_adi;
+            document.getElementById("showLength").appendChild(newElement);
+            newElement.appendChild(option);
+        }
+
+    }
+    
+         
+   
+</script>
 
 <script>
 
