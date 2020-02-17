@@ -443,9 +443,7 @@
                             </fieldset>
                         </div>
                         <div id="policyTextDiv"></div>
-                        <div class="col-md-2 mb-1">
-                            <div id="showLength"></div>
-                        </div> 
+                        <div class="form-row align-items-center" id="showLength"></div>
                     </form>
                 </div>
             </div>
@@ -458,39 +456,44 @@
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
+<script type="text/javascript">
 
-<script>
-    json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //GET JSON
-    json_object = JSON.parse(json_PolicyScreen); //PARSE JSON
-    var pol_ist_length = json_object.police_ist.length; //Find Length Of Array
-    //Loop For Get ist_adi
-    for(i = 0; i<=pol_ist_length; i++){
-        var policeIst = json_object.police_ist[i];
-        var istatistik_adi = policeIst.ist_adi; 
-        var ist_deger_tab = policeIst.ist_deger_tab;
-        for(n=0; n<=ist_deger_tab.length; n++){
-                console.log(ist_deger_tab[n]);
-        }
-        //Check Only Browsable = 1 
-        if(json_object.police_ist[i].is_browsable == "1"){   
-            var newElement = document.createElement('select'); //Create Select Element
-            var option = document.createElement("option"); //Create Select Element's Options
-            var div = document.createElement("div");
-            newElement.id = istatistik_adi; newElement.value = istatistik_adi; //Set ids, values of Select Element
-            option.text=istatistik_adi; //Write Options
+    var myDiv = document.getElementById("showLength");
+
+    json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //Get JSON
+    json_object = JSON.parse(json_PolicyScreen); // JSON Parse
+        for(var j=0; j<=json_object.police_ist.length; j++){ //Loop For Get Values
+            if(json_object.police_ist[j].is_browsable=='1'){
+            var istDegerTabs = json_object.police_ist[j].ist_deger_tab;
+            my_div=document.createElement('Div');
+            my_div2=document.createElement('Div');
+
+            var label = document.createElement("label");
+            var selectList = document.createElement("select"); //Create Element
+
             //Set Attributes
-            newElement.setAttribute("class","form-control form-control-sm");
-            newElement.setAttribute("style","height: calc(1em + 0.7rem + 2px) !important");
-            option.setAttribute("value", istatistik_adi);
-            //Write to div
-            newElement.innerHTML = istatistik_adi;
-            document.getElementById("showLength").appendChild(newElement);
-            newElement.appendChild(option);
-        }
+            my_div.setAttribute("class","form-group");
+            my_div.appendChild(label);
+            my_div2.setAttribute("class","col-md-2 mb-1");
+            my_div2.appendChild(label);
+            label.innerHTML = json_object.police_ist[j].ist_adi; //InnerHTML Label
+            my_div.appendChild(my_div2);
+            my_div2.appendChild(selectList);
+            myDiv.appendChild(my_div2);
+            selectList.setAttribute("id", json_object.police_ist[j].ist_adi);
+            selectList.setAttribute("class","form-control form-control-sm");
+            selectList.setAttribute("style","height: calc(1em + 0.7rem + 2px) !important");
 
-    }
-    
-         
+        //Create and append the options
+        for (var i = 0; i < istDegerTabs.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value", istDegerTabs[i].deger_adi);
+            option.setAttribute("id", istDegerTabs[i].deger_kod);
+            option.text = istDegerTabs[i].deger_adi;
+            selectList.appendChild(option);
+        }
+    }       
+}
    
 </script>
 
