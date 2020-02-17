@@ -462,19 +462,19 @@
 
     json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //Get JSON
     json_object = JSON.parse(json_PolicyScreen); // JSON Parse
+    
         for(var j=0; j<=json_object.police_ist.length; j++){ //Loop For Get Values
             if(json_object.police_ist[j].is_browsable=='1'){
             var istDegerTabs = json_object.police_ist[j].ist_deger_tab;
-            my_div=document.createElement('Div');
-            my_div2=document.createElement('Div');
-
-            var label = document.createElement("label");
-            var selectList = document.createElement("select"); //Create Element
+            my_div=document.createElement('Div'); //Create Div for Form-Group
+            my_div2=document.createElement('Div'); //Create Div for Width of Input
+            var label = document.createElement("label"); //Create Label
+            var selectList = document.createElement("select"); //Create Select
 
             //Set Attributes
-            my_div.setAttribute("class","form-group");
+            my_div.setAttribute("class","form-group"); //Div Form-Group
             my_div.appendChild(label);
-            my_div2.setAttribute("class","col-md-2 mb-1");
+            my_div2.setAttribute("class","col-sm-4 col-md-4 col-lg-2 mb-1"); //Div Width
             my_div2.appendChild(label);
             label.innerHTML = json_object.police_ist[j].ist_adi; //InnerHTML Label
             my_div.appendChild(my_div2);
@@ -482,13 +482,17 @@
             myDiv.appendChild(my_div2);
             selectList.setAttribute("id", json_object.police_ist[j].ist_adi);
             selectList.setAttribute("class","form-control form-control-sm");
-            selectList.setAttribute("style","height: calc(1em + 0.7rem + 2px) !important");
+            selectList.setAttribute("style","height: calc(1em + 0.8rem + 2px) !important");
 
-        //Create and append the options
+        //Create and append the Options
         for (var i = 0; i < istDegerTabs.length; i++) {
             var option = document.createElement("option");
             option.setAttribute("value", istDegerTabs[i].deger_adi);
             option.setAttribute("id", istDegerTabs[i].deger_kod);
+            //Set Selected
+            if(istDegerTabs[i].is_selected == '1'){
+                option.setAttribute("selected",istDegerTabs[i].deger_adi);
+            }
             option.text = istDegerTabs[i].deger_adi;
             selectList.appendChild(option);
         }
