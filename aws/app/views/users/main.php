@@ -444,6 +444,7 @@
                         </div>
                         <div id="policyTextDiv"></div>
                         <div class="form-row align-items-center" id="showLength"></div>
+                        <div id="policyTextDiv2"></div>
                     </form>
                 </div>
             </div>
@@ -463,7 +464,7 @@
     json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //Get JSON
     json_object = JSON.parse(json_PolicyScreen); // JSON Parse
     
-        for(var j=0; j<=json_object.police_ist.length; j++){ //Loop For Get Values
+        for(var j=0; j<json_object.police_ist.length; j++){ //Loop For Get Values
             if(json_object.police_ist[j].is_browsable=='1'){
             var istDegerTabs = json_object.police_ist[j].ist_deger_tab;
             my_div=document.createElement('Div'); //Create Div for Form-Group
@@ -483,7 +484,7 @@
             selectList.setAttribute("id", json_object.police_ist[j].ist_adi);
             selectList.setAttribute("class","form-control form-control-sm");
             selectList.setAttribute("style","height: calc(1em + 0.8rem + 2px) !important");
-
+            
         //Create and append the Options
         for (var i = 0; i < istDegerTabs.length; i++) {
             var option = document.createElement("option");
@@ -495,14 +496,36 @@
             }
             option.text = istDegerTabs[i].deger_adi;
             selectList.appendChild(option);
-        }
-    }       
+        } 
+    }    
 }
+
+
+$('select').on('change', function() {
+    for(var s=0; s<json_object.police_ist.length; s++){ //Loop For Get Values
+        var selected_value = $(this).children(":selected").attr("value");
+        var selected_ids = $(this).children(":selected").attr("id");
+        var selectCompId = $(this).attr("id");
+
+            var degerTabsLar = json_object.police_ist[s].ist_deger_tab;
+            for (var g = 0; g < degerTabsLar.length; g++) {
+                if(degerTabsLar[g].deger_adi == selected_value && json_object.police_ist[s].ist_adi == selectCompId){
+                    json_object.police_ist[s].selected_deger_kod = selected_ids; 
+                }
+            }
+        }
+        alert(selected_ids);
+    });
+    function policyScreen_Stringfy(){
+        json_PolicyScreen = JSON.stringify(json_object);
+        document.getElementById("policyTextDiv").innerHTML += json_PolicyScreen;
+    }
    
 </script>
 
-<script>
 
+<script>
+/*
     json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
 
     json_object = JSON.parse(json_PolicyScreen);
@@ -551,7 +574,7 @@
                 $('#istAlertModal').modal('show');
             }
         }
-
+*/
 </script>
 
 <script>
@@ -589,7 +612,6 @@
     });
     $('select').on('change', function() {
         var id = $(this).children(":selected").attr("id");
-        alert(id); 
 });
     </script>
 
