@@ -442,9 +442,9 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div id="policyTextDiv"></div>
                         <div class="form-row align-items-center" id="showLength"></div>
                         <div id="policyTextDiv2"></div>
+                        <div id="policyTextDiv"></div>
                     </form>
                 </div>
             </div>
@@ -454,6 +454,7 @@
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
+<?php Dropdown::GetDropdown('Nakliyat') ?>
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
@@ -464,52 +465,47 @@
     json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //Get JSON
     json_object = JSON.parse(json_PolicyScreen); // JSON Parse
     
-        for(var j=0; j<json_object.police_ist.length; j++){ //Loop For Get Values
-            if(json_object.police_ist[j].is_browsable=='1'){
+    for(var j=0; j<json_object.police_ist.length; j++){ //Loop For Get Values
+        if(json_object.police_ist[j].is_browsable=='1'){
             var istDegerTabs = json_object.police_ist[j].ist_deger_tab;
-            my_div=document.createElement('Div'); //Create Div for Form-Group
-            my_div2=document.createElement('Div'); //Create Div for Width of Input
+            my_div=document.createElement('Div'); //Create Div for Width of Input
             var label = document.createElement("label"); //Create Label
             var selectList = document.createElement("select"); //Create Select
 
             //Set Attributes
-            my_div.setAttribute("class","form-group"); //Div Form-Group
+            my_div.setAttribute("class","col-sm-4 col-md-4 col-lg-2 mb-1"); //Div Width
             my_div.appendChild(label);
-            my_div2.setAttribute("class","col-sm-4 col-md-4 col-lg-2 mb-1"); //Div Width
-            my_div2.appendChild(label);
-            label.innerHTML = json_object.police_ist[j].ist_adi; //InnerHTML Label
-            my_div.appendChild(my_div2);
-            my_div2.appendChild(selectList);
-            myDiv.appendChild(my_div2);
+            label.innerHTML = (json_object.police_ist[j].ist_adi + " : ") ; //InnerHTML Label
+            my_div.appendChild(selectList);
+            myDiv.appendChild(my_div);
             selectList.setAttribute("id", json_object.police_ist[j].ist_adi);
-            selectList.setAttribute("class","form-control form-control-sm");
-            selectList.setAttribute("style","height: calc(1em + 0.8rem + 2px) !important");
+            selectList.setAttribute("class","custom-select custom-select-sm");
+            selectList.setAttribute("style","height: calc(1em + 0.5rem + 2px) !important");
             
-        //Create and append the Options
-        for (var i = 0; i < istDegerTabs.length; i++) {
-            var option = document.createElement("option");
-            option.setAttribute("value", istDegerTabs[i].deger_adi);
-            option.setAttribute("id", istDegerTabs[i].deger_kod);
-            //Set Selected
-            if(istDegerTabs[i].is_selected == '1'){
-                option.setAttribute("selected",istDegerTabs[i].deger_adi);
-            }
-            option.text = istDegerTabs[i].deger_adi;
-            selectList.appendChild(option);
-        } 
-    }    
-}
+            //Create and append the Options
+            for (var i = 0; i < istDegerTabs.length; i++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", istDegerTabs[i].deger_adi);
+                option.setAttribute("id", istDegerTabs[i].deger_kod);
+                //Set Selected
+                if(istDegerTabs[i].is_selected == '1'){
+                    option.setAttribute("selected",istDegerTabs[i].deger_adi);
+                }
+                option.text = istDegerTabs[i].deger_adi;
+                selectList.appendChild(option);
+            } 
+        }    
+    }
 
-
-$('select').on('change', function() {
+    $('select').on('change', function() {
     for(var s=0; s<json_object.police_ist.length; s++){ //Loop For Get Values
         var selected_value = $(this).children(":selected").attr("value");
         var selected_ids = $(this).children(":selected").attr("id");
         var selectCompId = $(this).attr("id");
 
-            var degerTabsLar = json_object.police_ist[s].ist_deger_tab;
-            for (var g = 0; g < degerTabsLar.length; g++) {
-                if(degerTabsLar[g].deger_adi == selected_value && json_object.police_ist[s].ist_adi == selectCompId){
+            var policeDegerTabs = json_object.police_ist[s].ist_deger_tab;
+            for(var g = 0; g < policeDegerTabs.length; g++) {
+                if(policeDegerTabs[g].deger_adi == selected_value && json_object.police_ist[s].ist_adi == selectCompId){
                     json_object.police_ist[s].selected_deger_kod = selected_ids; 
                 }
             }
@@ -518,63 +514,9 @@ $('select').on('change', function() {
     });
     function policyScreen_Stringfy(){
         json_PolicyScreen = JSON.stringify(json_object);
-        document.getElementById("policyTextDiv").innerHTML += json_PolicyScreen;
+        document.getElementById("policyTextDiv").innerHTML = json_PolicyScreen;
     }
    
-</script>
-
-
-<script>
-/*
-    json_PolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>';
-
-    json_object = JSON.parse(json_PolicyScreen);
-
-    $('select').on('change', function() {
-
-        var tdg_id = $('#edt_ist_TDG').children(":selected").attr("id");
-        json_object.police_ist[6].selected_deger_kod = tdg_id; 
-
-        var tt7_id = $('#edt_ist_TT7').children(":selected").attr("id");
-        json_object.police_ist[7].selected_deger_kod = tt7_id; 
-
-        var emk_id = $('#edt_ist_EMK').children(":selected").attr("id");
-        json_object.police_ist[8].selected_deger_kod = emk_id; 
-
-        var ibo_id = $('#edt_ist_IBO').children(":selected").attr("id");
-        json_object.police_ist[18].selected_deger_kod = ibo_id; 
-
-        var yiy_id = $('#edt_ist_YIY').children(":selected").attr("id");
-        json_object.police_ist[0].selected_deger_kod = yiy_id;
-        
-        var bau_id = $('#edt_ist_BAU').children(":selected").attr("id");
-        json_object.police_ist[1].selected_deger_kod = bau_id;
-
-        var bil_id = $('#edt_ist_BIL').children(":selected").attr("id");
-        json_object.police_ist[2].selected_deger_kod = bil_id;
-
-        var btu_id = $('#edt_ist_BTU').children(":selected").attr("id");
-        json_object.police_ist[3].selected_deger_kod = btu_id; 
-
-        var bis_id = $('#edt_ist_BIS').children(":selected").attr("id");
-        json_object.police_ist[4].selected_deger_kod = bis_id;  
-
-        var amc_id = $('#edt_ist_AMC').children(":selected").attr("id");
-        json_object.police_ist[9].selected_deger_kod = amc_id;
-
-        var gem_id = $('#edt_ist_GEM').children(":selected").attr("id");
-        json_object.police_ist[10].selected_deger_kod = gem_id;
-      
-    });
-        function policyScreen_Stringfy(){
-            if(document.getElementById('edt_ist_TDG').style.borderColor!='tomato' && document.getElementById('edt_ist_EMK').style.borderColor!='tomato' && document.getElementById('edt_ist_TT7').style.borderColor!='tomato' && document.getElementById('edt_ist_YIY').style.borderColor!='tomato' && document.getElementById('edt_ist_BAU').style.borderColor!='tomato' && document.getElementById('edt_ist_BTU').style.borderColor!='tomato') {
-                json_PolicyScreen = JSON.stringify(json_object);
-                document.getElementById("policyTextDiv").innerHTML += json_PolicyScreen;
-            }else{
-                $('#istAlertModal').modal('show');
-            }
-        }
-*/
 </script>
 
 <script>

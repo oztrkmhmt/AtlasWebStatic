@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-
+  
   <meta charset="utf-8"/>
    <!-- CSS Part-->
   <link rel="stylesheet" href="../css/jquery-ui.css">
@@ -14,6 +14,7 @@
   <!-- Site Title Name-->
   <title><?php echo SITENAME; ?></title>
   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
 </head>
  <!-- Start Body-->
 <body>
