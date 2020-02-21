@@ -442,6 +442,12 @@
                                 </div>
                             </fieldset>
                         </div>
+                        <div class="form-row">
+                            <div class="col-md-2 mb-1">
+                                <div class="input-group mb-3" id="inputIcon"></div>
+                            </div>
+                        </div>
+                        <br>
                         <div class="form-row align-items-center" id="showLength"></div>
                         <div id="policyTextDiv2"></div>
                         <div id="policyTextDiv"></div>
@@ -454,9 +460,31 @@
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
-<?php Dropdown::GetDropdown('Nakliyat') ?>
+
 <script src="../js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
+<script>
+  var xInp = document.createElement("INPUT");
+  var yDiv = document.createElement("Div");
+  var sp = document.createElement("Span");
+  var i = document.createElement("i");
+
+  document.getElementById("inputIcon").appendChild(xInp);
+  document.getElementById("inputIcon").appendChild(yDiv);
+  yDiv.appendChild(sp);
+  sp.appendChild(i);
+
+  xInp.setAttribute("type", "text");
+  xInp.setAttribute("value", "Hello");
+  xInp.setAttribute("name", "teklif_tarihi");
+  xInp.setAttribute("class", "form-control form-control-sm");
+  yDiv.setAttribute("class","input-group-append");
+  yDiv.setAttribute("id","denemeYDiv");
+  sp.setAttribute("class","input-group-text cursor");
+  i.setAttribute("class","fas fa-search");
+
+</script>
 
 <script type="text/javascript">
 
@@ -471,7 +499,7 @@
             my_div=document.createElement('Div'); //Create Div for Width of Input
             var label = document.createElement("label"); //Create Label
             var selectList = document.createElement("select"); //Create Select
-
+    
             //Set Attributes
             my_div.setAttribute("class","col-sm-4 col-md-4 col-lg-2 mb-1"); //Div Width
             my_div.appendChild(label);
@@ -721,5 +749,3 @@
     }
 });
 </script>
-
-

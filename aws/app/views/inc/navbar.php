@@ -49,4 +49,5 @@
         <?php endif; ?>
     </ul>
 </nav>
+<?php Dropdown::GetDropdown('Nakliyat') ?>
 

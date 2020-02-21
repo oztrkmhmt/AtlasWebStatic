@@ -28,7 +28,7 @@ class Dropdown {
 
         newDiv.appendChild(creLiA);
         newDiv.appendChild(creHr);
-
+        
         creLiA.innerHTML= json_object.police_ist[j].ist_adi;
         creLiA.setAttribute("class","dropdown-item");
         creLiA.setAttribute("name",json_object.police_ist[j].ist_adi);
