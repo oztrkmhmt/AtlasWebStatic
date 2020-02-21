@@ -444,13 +444,19 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-2 mb-1">
-                                <div class="input-group mb-3" id="inputIcon"></div>
+                                <div class="input-group mb-1" id="inputIcon"></div>
                             </div>
+                            <div id="result"></div>
                         </div>
                         <br>
                         <div class="form-row align-items-center" id="showLength"></div>
-                        <div id="policyTextDiv2"></div>
                         <div id="policyTextDiv"></div>
+                        <div class="form-row">
+                            <div class="col-md-2 mb-1">
+                                <div id="inptDiv">
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -460,11 +466,37 @@
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
-
 <script src="../js/jquery.min.js"></script>
+<script src="../js/jquery/jquery-editable-select.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
 <script>
+    var myParent = document.getElementById("inptDiv");
+
+    EditablePolicyScreen = '<?php echo json_encode($_SESSION['policyScreen']) ?>'; //Get JSON
+    EditableJsonObject = JSON.parse(EditablePolicyScreen); // JSON Parse
+   
+    //Create and append select list
+    var selectList = document.createElement("select");
+
+    myParent.appendChild(selectList);
+    myParent.setAttribute("class","custom-select custom-select-sm deneme-select");
+
+    //Create and append the options
+    for (var i = 0; i < EditableJsonObject.police_ist.length; i++) {
+        var option = document.createElement("option");
+        option.value = EditableJsonObject.police_ist[i].ist_adi;
+        option.text = EditableJsonObject.police_ist[i].ist_adi;
+        selectList.appendChild(option);
+    }
+</script>
+
+<script>
+    $('.deneme-select').editableSelect();
+</script>
+
+<script>
+
   var xInp = document.createElement("INPUT");
   var yDiv = document.createElement("Div");
   var sp = document.createElement("Span");
@@ -476,13 +508,23 @@
   sp.appendChild(i);
 
   xInp.setAttribute("type", "text");
-  xInp.setAttribute("value", "Hello");
-  xInp.setAttribute("name", "teklif_tarihi");
+  //xInp.setAttribute("value", "DenemeAppend");
+  xInp.setAttribute("id", "Inp_icon_id");
   xInp.setAttribute("class", "form-control form-control-sm");
   yDiv.setAttribute("class","input-group-append");
-  yDiv.setAttribute("id","denemeYDiv");
   sp.setAttribute("class","input-group-text cursor");
   i.setAttribute("class","fas fa-search");
+
+    //Get Input Text Value
+    const $InpSource = document.querySelector('#Inp_icon_id');
+    const $result = document.querySelector('#result');
+
+    const typeHandler = function(e) {
+        $result.innerHTML = e.target.value;
+    }
+
+    $InpSource.addEventListener('input', typeHandler);
+    $InpSource.addEventListener('propertychange', typeHandler);
 
 </script>
 
@@ -544,7 +586,7 @@
         json_PolicyScreen = JSON.stringify(json_object);
         document.getElementById("policyTextDiv").innerHTML = json_PolicyScreen;
     }
-   
+
 </script>
 
 <script>
@@ -736,7 +778,7 @@
 <script>
     $("#teminat_div").css("display", "none");
     $("#matbu_btn").click(function(){
-        if($("#edt_matbu_22").val() != '' && $("#edt_matbu_13").val() != '' && $("#edt_matbu_24").val() != '' ){;
+        if($("#edt_matbu_22").val() != '' && $("#edt_matbu_13").val() != '' && $("#edt_matbu_24").val() != '' ){
         var showDiv = 1;
         if(showDiv = 1){
             $("#teminat_div").css("display", "inline-block");
