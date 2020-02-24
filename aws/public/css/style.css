@@ -36,6 +36,7 @@ body {
 .custom-select-sm {
     height: calc(1em + 0.5rem + 2px) !important;
     padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
     font-size: 0.75rem !important;
 
 }

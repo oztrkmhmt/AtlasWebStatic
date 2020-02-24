@@ -227,7 +227,7 @@
                                         <select id="edt_ist_BAU" name="edt_ist_BAU" data-toggle="popover" data-placement="top" data-content="Bu alan seçilmesi zorunludur !" data-trigger="hover" class="custom-select custom-select-sm" required>
                                             <?php
                                                 foreach($_SESSION['policyScreen']['police_ist'] as $policeDetail) {
-                                                    if($policeDetail['ist_adi'] == "Kalkiş Ülkesi"){
+                                                    if($policeDetail['ist_adi'] == "Kalkış Ülkesi"){
                                                     foreach($policeDetail['ist_deger_tab'] as $key => $policeList){ 
                                                     $selected='';
                                                     if ($key==$selected){
@@ -448,15 +448,29 @@
                             </div>
                             <div id="result"></div>
                         </div>
-                        <br>
-                        <div class="form-row align-items-center" id="showLength"></div>
-                        <div id="policyTextDiv"></div>
                         <div class="form-row">
                             <div class="col-md-2 mb-1">
                                 <div id="inptDiv">
                                 </div>
                             </div>
                         </div>
+                        <br>
+                        <div class="form-row align-items-center" id="showLength"></div>
+                        <div id="policyTextDiv"></div>
+
+                        <div id="denemePolDiv"> </div>
+
+                        <div class="ui-widget">
+                            <select id="denemedeneme" class="custom-select custom-select-sm deneme2-select">
+                                <option id="1">1 </option>
+                                <option id="2">2 </option>
+                                <option id="3">3 </option>
+                            </select>
+                        </div>
+
+                        Result:
+                         <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+
                     </form>
                 </div>
             </div>
@@ -466,10 +480,51 @@
 <?php }else{} ?>
 <?php Modal::GetModal('Müşteri Arama','tcknoModal','kimlikno')?>
 <?php AlertModal::GetAlertModal('Dikkat !','istAlertModal','Zorunlu Alanlarda Lütfen Seçim Yapınız.','#721c24','white','white')?>
+<?php Autocomplete::AutoComp(); ?>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/jquery/jquery-editable-select.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
+<script>
+    $( function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+    $( "#denemedeneme" ).autocomplete({
+      source: deneme,
+      minLength: 2,
+      select: function( event, ui ) {
+        log( "Selected: " + ui.item.value );
+      }
+    });
+  } );
+  </script>
+
+<script>
+    /*
+  $(function() {
+    $( "#denemedeneme" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: 'app/views/users/autocomplete.php',
+          dataType: "json",
+          data: {
+            q: request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        });
+      },
+      minLength: 1,
+    });
+  });
+  */
+</script>
+
+<!-- Create Element Editable-Select-->
 <script>
     var myParent = document.getElementById("inptDiv");
 
@@ -491,12 +546,14 @@
     }
 </script>
 
+<!-- Call Editable-Select-->
 <script>
     $('.deneme-select').editableSelect();
+    $('.deneme2-select').editableSelect();
 </script>
 
+<!-- Create Element Input Field with Icon-->
 <script>
-
   var xInp = document.createElement("INPUT");
   var yDiv = document.createElement("Div");
   var sp = document.createElement("Span");
@@ -528,6 +585,7 @@
 
 </script>
 
+<!-- Create Element Dynamically From Web API-->
 <script type="text/javascript">
 
     var myDiv = document.getElementById("showLength");
@@ -589,6 +647,7 @@
 
 </script>
 
+<!-- Border Style and Popover-->
 <script>
 
     document.getElementById('edt_ist_TDG').style.borderColor='tomato';
@@ -624,9 +683,10 @@
     });
     $('select').on('change', function() {
         var id = $(this).children(":selected").attr("id");
-});
-    </script>
+    });
+</script>
 
+<!-- Call Popover-->
 <script>
     $(document).ready(function(){
     $('[data-toggle="popover"]').popover();   
@@ -639,6 +699,7 @@
     });
 </script>
 
+<!-- Create Element Dynamically From Web API-->
 <script>
     $('select').on('change', function() {
         $("#matbu_bil").css("display", "none");
@@ -652,7 +713,8 @@
     };
 });
 </script>
-    
+
+<!-- Get Value of Elements-->    
 <script>
     var bauVal = $("#edt_ist_BAU").val();
     $("#edt_matbu_4").val(bauVal);
@@ -688,6 +750,7 @@
     });
 </script>
 
+<!-- Set Datepickers-->    
 <script>
     $( function() {
       $( "#teklif_tarihi" ).datepicker({
@@ -739,6 +802,7 @@
         $('#yukleme_tarihi').datepicker('show');
     }
 </script>
+
 <?php require APPROOT . '/views/inc/footer.php' ; ?>
 <!-- Display Error Message When Error Occured -->
 <div id="errorDiv" class="alert alert-danger" role="alert">
