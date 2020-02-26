@@ -4,11 +4,14 @@ class Autocomplete{
     public function AutoComp(){
         ?>
         <script>
-        var deneme =<?php foreach($_SESSION['policyScreen']['police_ist'] as $key => $value)
-        $fileContent [] = $value['ist_adi'];
+        var getShipNames =<?php foreach($_SESSION['policyScreen']['police_ist'] as $key => $value)
+        if($value['ist_adi'] == 'Gemi Adi/Imo'){
+            foreach($value['ist_deger_tab'] as $shipNames)
+        $fileContent [] = $shipNames['deger_adi'];
         echo json_encode($fileContent) ?> 
         //console.log(<?php echo json_encode($fileContent) ?>) ;
         </script>
         <?php
+        }
     }
 }

@@ -448,26 +448,18 @@
                             </div>
                             <div id="result"></div>
                         </div>
+                        <br>
+                        <div class="form-row align-items-center" id="showLength"></div>
+                        <div id="policyTextDiv"></div>
+
+                        <div id="response"> <pre> </pre> </div>
+
                         <div class="form-row">
                             <div class="col-md-2 mb-1">
                                 <div id="inptDiv">
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="form-row align-items-center" id="showLength"></div>
-                        <div id="policyTextDiv"></div>
-
-                        <div id="denemePolDiv"> </div>
-
-                        <div class="ui-widget">
-                            <select id="denemedeneme" class="custom-select custom-select-sm deneme2-select">
-                                <option id="1">1 </option>
-                                <option id="2">2 </option>
-                                <option id="3">3 </option>
-                            </select>
-                        </div>
-
                         Result:
                          <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
 
@@ -491,37 +483,14 @@
       $( "<div>" ).text( message ).prependTo( "#log" );
       $( "#log" ).scrollTop( 0 );
     }
- 
-    $( "#denemedeneme" ).autocomplete({
-      source: deneme,
-      minLength: 2,
+    $( "#inptDiv" ).autocomplete({
+      source: getShipNames,
+      minLength: 3,
       select: function( event, ui ) {
         log( "Selected: " + ui.item.value );
       }
     });
   } );
-  </script>
-
-<script>
-    /*
-  $(function() {
-    $( "#denemedeneme" ).autocomplete({
-      source: function( request, response ) {
-        $.ajax({
-          url: 'app/views/users/autocomplete.php',
-          dataType: "json",
-          data: {
-            q: request.term
-          },
-          success: function( data ) {
-            response( data );
-          }
-        });
-      },
-      minLength: 1,
-    });
-  });
-  */
 </script>
 
 <!-- Create Element Editable-Select-->
@@ -549,7 +518,6 @@
 <!-- Call Editable-Select-->
 <script>
     $('.deneme-select').editableSelect();
-    $('.deneme2-select').editableSelect();
 </script>
 
 <!-- Create Element Input Field with Icon-->
